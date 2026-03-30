@@ -1,0 +1,66 @@
+{
+  "version": 8,
+  "name": "行政区域データ　市町村",
+  "sources": {
+    "vector_source": {
+      "type": "vector",
+      "url": "mbtiles://{your_tileset}"
+    }
+  },
+  "layers": [
+    {
+      "id": "polygon-fill",
+      "type": "fill",
+      "source": "vector_source",
+      "source-layer": "市町村",
+      "filter": ["==", ["geometry-type"], "Polygon"],
+      "paint": {
+        "fill-color": "rgba(255,255,255,0)",
+        "fill-outline-color": "rgba(0,0,0,1))"
+      }
+    },
+    {
+      "id": "polygon-outline",
+      "type": "line",
+      "source": "vector_source",
+      "source-layer": "市町村",
+      "filter": ["==", ["geometry-type"], "Polygon"],
+      "paint": {
+        "line-color": "rgba(0,0,0,1)",
+        "line-width": 0.8
+      }
+    },
+    {
+      "id": "point-circle",
+      "type": "circle",
+      "source": "vector_source",
+      "source-layer": "市町村ラベル",
+      "filter": ["==", ["geometry-type"], "Point"],
+      "paint": {
+        "circle-radius": 2,
+        "circle-color": "rgba(255,255,255,0)",
+        "circle-stroke-color": "rgba(0,0,0,0)",
+        "circle-stroke-width": 1
+      }
+    },
+    {
+      "id": "point-label",
+      "type": "symbol",
+      "source": "vector_source",
+      "source-layer": "市町村ラベル",
+      "filter": ["==", ["geometry-type"], "Point"],
+      "minzoom": 9,
+      "maxzoom": 19,
+      "layout": {
+        "text-field": ["get", "表示名"],
+        "text-font": ["Open Sans Bold"],
+        "text-size": 15
+      },
+      "paint": {
+        "text-color": "rgba(50,50,50,1)",
+        "text-halo-color": "rgba(250,250,250,1)",
+        "text-halo-width": 1
+      }
+    }
+  ]
+}
