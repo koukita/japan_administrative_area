@@ -1,0 +1,66 @@
+{
+  "version": 8,
+  "name": "行政区域データ　都道府県",
+  "sources": {
+    "vector_source": {
+      "type": "vector",
+      "url": "mbtiles://{your_tileset}"
+    }
+  },
+  "layers": [
+    {
+      "id": "polygon-fill",
+      "type": "fill",
+      "source": "vector_source",
+      "source-layer": "都道府県",
+      "filter": ["==", ["geometry-type"], "Polygon"],
+      "paint": {
+        "fill-color": "rgba(255,255,255,0)",
+        "fill-outline-color": "rgba(20,70,140,1)"
+      }
+    },
+    {
+      "id": "polygon-outline",
+      "type": "line",
+      "source": "vector_source",
+      "source-layer": "都道府県",
+      "filter": ["==", ["geometry-type"], "Polygon"],
+      "paint": {
+        "line-color": "rgba(20,70,140,1)",
+        "line-width": 2
+      }
+    },
+    {
+      "id": "point-circle",
+      "type": "circle",
+      "source": "vector_source",
+      "source-layer": "都道府県ラベル",
+      "filter": ["==", ["geometry-type"], "Point"],
+      "paint": {
+        "circle-radius": 2,
+        "circle-color": "rgba(0,255,0,0)",
+        "circle-stroke-color": "rgba(0,0,0,0)",
+        "circle-stroke-width": 1
+      }
+    },
+    {
+      "id": "point-label",
+      "type": "symbol",
+      "source": "vector_source",
+      "source-layer": "都道府県ラベル",
+      "filter": ["==", ["geometry-type"], "Point"],
+      "minzoom": 5,
+      "maxzoom": 13,
+      "layout": {
+        "text-field": ["get", "都道府県名"],
+        "text-font": ["Open Sans Bold"],
+        "text-size": 20
+      },
+      "paint": {
+        "text-color": "rgba(20,70,140,1)",
+        "text-halo-color": "rgba(255,255,255,1)",
+        "text-halo-width": 2
+      }
+    }
+  ]
+}
